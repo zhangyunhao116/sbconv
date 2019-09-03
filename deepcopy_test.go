@@ -21,19 +21,3 @@ func TestDeepCopyBytes(t *testing.T) {
 	}
 
 }
-
-func TestDeepCopyString(t *testing.T) {
-	var s = "111"
-	var sc = DeepCopyString(s)
-
-	if s != sc {
-		t.Fatal("error content")
-	}
-
-	sh := (*reflect.StringHeader)(unsafe.Pointer(&s))
-	sch := (*reflect.StringHeader)(unsafe.Pointer(&sc))
-	if sh.Data == sch.Data || sh.Len != sch.Len {
-		t.Fatal("error headers")
-	}
-
-}
