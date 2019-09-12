@@ -21,3 +21,16 @@ func TestDeepCopyBytes(t *testing.T) {
 	}
 
 }
+
+func TestDeepCopyString(t *testing.T) {
+	b := make([]byte, 5, 10)
+	s := BytesToString(b)
+	newS := DeepCopyString(s)
+	if newS != s {
+		t.Error("error content")
+	}
+	b[0] = 10
+	if newS == s {
+		t.Error("error content")
+	}
+}
