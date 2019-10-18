@@ -4,14 +4,14 @@ import (
 	"unsafe"
 )
 
-// Deep copy input byte slice.
+// DeepCopyBytes returns a deep copy of the input byte slice.
 func DeepCopyBytes(b []byte) []byte {
 	rb := make([]byte, len(b))
 	copy(rb, b)
 	return rb
 }
 
-// Deep copy input string.
+// DeepCopyString returns a deep copy of the input string.
 //
 // This function is used in case of the input string
 // is converted by BytesToString, this means it is

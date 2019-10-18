@@ -5,7 +5,7 @@ import (
 	"unsafe"
 )
 
-// Converts string to a byte slice.
+// StringToBytes converts a string to a byte slice.
 //
 // This is a shallow copy, means that the returned byte slice reuse
 // the underlying array in string, so you can't change the returned
@@ -19,7 +19,7 @@ func StringToBytes(s string) (b []byte) {
 	return b
 }
 
-// Converts string to a byte slice.
+// BytesToString converts a string to a byte slice.
 //
 // This is a shallow copy, means that the returned string reuse the
 // underlying array in byte slice, it's your responsibility to keep
@@ -28,7 +28,7 @@ func BytesToString(b []byte) (s string) {
 	return *(*string)(unsafe.Pointer(&b))
 }
 
-// Converts string to a byte slice. (Deep copy)
+// StringToBytesNew converts a string to a new byte slice.
 //
 // The returned byte slice can be modified, it is actually a new byte slice,
 // and it's content equal to the input string.
@@ -47,7 +47,7 @@ func StringToBytesNew(s string) []byte {
 	return b
 }
 
-// Converts byte slice to a string. (Deep copy)
+// BytesToStringNew converts a byte slice to a new string. (Deep copy)
 //
 // This function is used in case you want get a fresh version of string
 // converted from the input byte slice, the returned string is a real
