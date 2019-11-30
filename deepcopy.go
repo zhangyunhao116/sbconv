@@ -1,4 +1,4 @@
-package goutils
+package sbconv
 
 import (
 	"unsafe"
@@ -14,7 +14,7 @@ func DeepCopyBytes(b []byte) []byte {
 // DeepCopyString returns a deep copy of the input string.
 //
 // This function is used in case of the input string
-// is converted by BytesToString, this means it is
+// is converted from BytesToString, this means it is
 // not a real string, but share an underlying array with
 // a byte slice, use this function to create a real string.
 func DeepCopyString(s string) string {

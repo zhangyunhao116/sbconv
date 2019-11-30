@@ -1,3 +1,3 @@
-module github.com/ZYunH/goutils
+module github.com/ZYunH/sbconv
 
 go 1.12

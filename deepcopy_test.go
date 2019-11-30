@@ -1,4 +1,4 @@
-package goutils
+package sbconv
 
 import (
 	"reflect"
