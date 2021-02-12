@@ -12,7 +12,7 @@ import (
 // byte slice in any situations.
 func StringToBytes(s string) (b []byte) {
 	bh := (*reflect.SliceHeader)(unsafe.Pointer(&b))
-	sh := *(*reflect.StringHeader)(unsafe.Pointer(&s))
+	sh := (*reflect.StringHeader)(unsafe.Pointer(&s))
 	bh.Data = sh.Data
 	bh.Len = sh.Len
 	bh.Cap = sh.Len
@@ -33,18 +33,7 @@ func BytesToString(b []byte) (s string) {
 // The returned byte slice can be modified, it is actually a new byte slice,
 // and it's content equal to the input string.
 func StringToBytesNew(s string) []byte {
-	b := make([]byte, len(s))
-
-	// Inline, equal to `temp := StringToBytes(s)`
-	var temp []byte
-	tempH := (*reflect.SliceHeader)(unsafe.Pointer(&temp))
-	sh := *(*reflect.StringHeader)(unsafe.Pointer(&s))
-	tempH.Data = sh.Data
-	tempH.Len = sh.Len
-	tempH.Cap = sh.Len
-
-	copy(b, temp)
-	return b
+	return []byte(s)
 }
 
 // BytesToStringNew converts a byte slice to a new string. (Deep copy)

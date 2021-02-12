@@ -13,8 +13,8 @@ func TestBytesToString(t *testing.T) {
 		t.Fatal("error content")
 	}
 
-	sh := *(*reflect.StringHeader)(unsafe.Pointer(&s))
-	bh := *(*reflect.SliceHeader)(unsafe.Pointer(&b))
+	sh := (*reflect.StringHeader)(unsafe.Pointer(&s))
+	bh := (*reflect.SliceHeader)(unsafe.Pointer(&b))
 	if sh.Data != bh.Data || sh.Len != bh.Len {
 		t.Fatal("error headers")
 	}
@@ -28,8 +28,8 @@ func TestStringToBytes(t *testing.T) {
 		t.Fatal("error content")
 	}
 
-	sh := *(*reflect.StringHeader)(unsafe.Pointer(&s))
-	bh := *(*reflect.SliceHeader)(unsafe.Pointer(&b))
+	sh := (*reflect.StringHeader)(unsafe.Pointer(&s))
+	bh := (*reflect.SliceHeader)(unsafe.Pointer(&b))
 	if sh.Data != bh.Data || sh.Len != bh.Len || sh.Len != bh.Cap {
 		t.Fatal("error headers")
 	}
@@ -37,9 +37,9 @@ func TestStringToBytes(t *testing.T) {
 
 func TestStringToBytesNew(t *testing.T) {
 	s := "TEST"
-	sh := *(*reflect.SliceHeader)(unsafe.Pointer(&s))
+	sh := (*reflect.SliceHeader)(unsafe.Pointer(&s))
 	b := StringToBytesNew(s)
-	bh := *(*reflect.StringHeader)(unsafe.Pointer(&b))
+	bh := (*reflect.StringHeader)(unsafe.Pointer(&b))
 	if sh.Data == bh.Data {
 		t.Error("got previous data")
 	}
@@ -51,9 +51,9 @@ func TestStringToBytesNew(t *testing.T) {
 
 func TestBytesToStringNew(t *testing.T) {
 	b := []byte{65, 66, 67, 68, 69}
-	bh := *(*reflect.StringHeader)(unsafe.Pointer(&b))
+	bh := (*reflect.StringHeader)(unsafe.Pointer(&b))
 	s := BytesToStringNew(b)
-	sh := *(*reflect.SliceHeader)(unsafe.Pointer(&s))
+	sh := (*reflect.SliceHeader)(unsafe.Pointer(&s))
 	if sh.Data == bh.Data {
 		t.Error("got previous data")
 	}
